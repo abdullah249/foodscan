@@ -3,9 +3,8 @@
 //import * as tf from '@tensorflow/tfjs';
 const tf = require("@tensorflow/tfjs");
 const tfn = require("@tensorflow/tfjs-node");
-//const handler = tfn.io.fileSystem("jsModel/model.json");
-//const model = tf.loadLayersModel(handler);
-const model = tf.loadLayersModel('jsModel/model.json');
+const handler = tfn.io.fileSystem("jsModel/model.json");
+const model = tf.loadLayersModel(handler);
 const jpeg = require('jpeg-js');
 var sleep = require('system-sleep');
 var express = require('express');
@@ -18,11 +17,9 @@ var fs= require('fs')
   , request = require('request');
 
 
-
 app.get('/foodscan', function (req, res) {
   
-
-
+let globalpred='none'
 async function imageapi() {
   
 request
@@ -249,34 +246,36 @@ const input_sub = input_divided.sub(c);
 
 
         
-predictionClass='none'   
-predictionClass=model.then(function (res) {
-   const example = tf.browser.fromPixels('Apple_pie_resized.jpg');
-   const prediction = res.predict(input_sub);
-   console.log('Predicted')
-    prediction.print()
+   
+predictionClass = model.then(function (res) {
+    //const example = tf.browser.fromPixels('Apple_pie_resized.jpg');
+    const prediction = res.predict(input_sub);
+    console.log('Predicted')
+    //prediction.print()
     const predictionIdx = tf.argMax(prediction, 1).arraySync();
     console.log(predictionIdx)
     modePred = mode(predictionIdx)
     console.log(modePred)
     predictionClass = classes[modePred[0]]
-    console.log(predictionIdx);
-	//return res.predict(input_sub);
-   // callback(JSON.parse(predictionClass));
-	callbacks: [tf.callbacks.earlyStopping({predict:predictionClass})]
-    console.log(predictionClass);//output result
-    //res.json(predictionClass)
-	//model.exports.predictionClass =  predictionClass;
-    console.log(prediction);
+	globalpred=predictionClass
+    global.predict = predictionClass ;
+    //console.log(predictionIdx);
+    //callback(null, JSON.parse(predictionClass));
+	//console.log(globalpred);//output result
+    //console.log(predictionClass);//output result
+    //model.exports.predictionClass =  predictionClass;
+    //console.log(prediction);
 }, function (err) {
-   console.log(err);
+    console.log(err);
 });
-
+sleep(10*1010);
+console.log(JSON.stringify(globalpred));
+res.json( JSON.stringify(globalpred));
 const variableName = 'variableValue';
 module.exports = variableName;
 //    }
 //};
-//res.json( JSON.stringify(predictionClass));
+
 })
 
 
@@ -285,3 +284,4 @@ var server = app.listen(8081, function () {
    var port = server.address().port
    console.log("Example app listening at http://%s:%s", host, port)
 })
+
