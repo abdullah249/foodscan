@@ -27,5 +27,7 @@
     "sharp": "^0.27.2",
     "system-sleep": "^1.3.7",
     "tensorflow-models": "0.0.1"
-  }
+  },
+  "engines": { "node" : "14.17.6" }
+
 }
