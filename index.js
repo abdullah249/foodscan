@@ -17,7 +17,7 @@ var fs= require('fs')
   , request = require('request');
 
 
-app.get('/foodscan', function (req, res) {
+app.get('/', function (req, res) {
   
 let globalpred='none'
 async function imageapi() {
