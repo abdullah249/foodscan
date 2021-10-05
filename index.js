@@ -10,14 +10,14 @@ var sleep = require('system-sleep');
 var express = require('express');
 var app = express();
 var fs = require("fs");
-
+var asyncJSON = require('async-json');
 var fs= require('fs')
   ,path = require('path')
   , http = require('http')
   , request = require('request');
 
 
-app.get('/', function (req, res) {
+app.get('/foodscan', function (req, res) {
   
 let globalpred='none'
 async function imageapi() {
@@ -259,6 +259,7 @@ predictionClass = model.then(function (res) {
     predictionClass = classes[modePred[0]]
 	globalpred=predictionClass
     global.predict = predictionClass ;
+	console.log(globalpred);
     //console.log(predictionIdx);
     //callback(null, JSON.parse(predictionClass));
 	//console.log(globalpred);//output result
@@ -268,18 +269,22 @@ predictionClass = model.then(function (res) {
 }, function (err) {
     console.log(err);
 });
-sleep(1010);
-console.log(JSON.stringify(globalpred));
-res.json( JSON.stringify(globalpred));
+sleep(1000);
+console.log(globalpred);
+
 const variableName = 'variableValue';
 module.exports = variableName;
 //    }
 //};
 
+console.log(globalpred);
+res.json( JSON.stringify(globalpred));
 })
 
-
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+PORT=process.env.PORT || 3000
+var server = app.listen(PORT, function () {
+   var host = server.address().address
+   var port = server.address().port
+   console.log("Example app listening at http://%s:%s", host, port)
+})
 
