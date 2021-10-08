@@ -16,7 +16,8 @@ var fs= require('fs')
   , http = require('http')
   , request = require('request');
 
-
+app.set('port', (process.env.PORT || 5000));
+app.use(express.static(__dirname + '/public'));
 app.get('/foodscan', function (req, res) {
   
 let globalpred='none'
@@ -281,7 +282,7 @@ console.log(globalpred);
 res.json( JSON.stringify(globalpred));
 })
 
-PORT=process.env.PORT || 3000
+PORT=process.env.PORT || 5000
 var server = app.listen(PORT, function () {
    var host = server.address().address
    var port = server.address().port
