@@ -33,7 +33,7 @@ request
  
 }
 imageapi()
-sleep(3000);
+sleep(2000);
 
 const NUMBER_OF_CHANNELS = 3
 const batch_size = 1
