@@ -2,6 +2,7 @@
 ////    test: function (callback, res) {
 //import * as tf from '@tensorflow/tfjs';
 const tf = require("@tensorflow/tfjs");
+var heapdump = require('heapdump');
 const tfn = require("@tensorflow/tfjs-node");
 const handler = tfn.io.fileSystem("jsModel/model.json");
 const model = tf.loadLayersModel(handler);
@@ -288,4 +289,4 @@ var server = app.listen(PORT, function () {
    var port = server.address().port
    console.log("Example app listening at http://%s:%s", host, port)
 })
-
+heapdump.writeSnapshot('/jsModel' + Date.now() + '.heapsnapshot');
