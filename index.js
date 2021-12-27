@@ -34,7 +34,7 @@ request
  
 }
 imageapi()
-sleep(1500);
+sleep(1000);
 
 const NUMBER_OF_CHANNELS = 3
 const batch_size = 1
@@ -277,7 +277,7 @@ const variableName = 'variableValue';
 module.exports = variableName;
 //    }
 //};
-sleep(200);
+sleep(500);
 console.log(globalpred);
 res.json( JSON.stringify(globalpred));
 })
