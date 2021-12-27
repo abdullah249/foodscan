@@ -271,7 +271,6 @@ predictionClass = model.then(function (res) {
 }, function (err) {
     console.log(err);
 });
-//sleep(1000);
 console.log(globalpred);
 
 const variableName = 'variableValue';
