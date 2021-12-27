@@ -277,7 +277,7 @@ const variableName = 'variableValue';
 module.exports = variableName;
 //    }
 //};
-sleep(500);
+sleep(200);
 console.log(globalpred);
 res.json( JSON.stringify(globalpred));
 })
