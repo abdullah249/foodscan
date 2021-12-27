@@ -277,7 +277,7 @@ const variableName = 'variableValue';
 module.exports = variableName;
 //    }
 //};
-sleep(500);
+//sleep(500);
 console.log(globalpred);
 res.json( JSON.stringify(globalpred));
 })
@@ -288,4 +288,4 @@ var server = app.listen(PORT, function () {
    var port = server.address().port
    console.log("Example app listening at http://%s:%s", host, port)
 })
-heapdump.writeSnapshot('/jsModel' + Date.now() + '.heapsnapshot');
+;
