@@ -25,7 +25,7 @@ let globalpred='none'
 async function imageapi() {
   
 request
-  .get('https://weightchoper.somee.com/staticfiles/images/Apple_pie_resized.jpg')
+  .get('https://foodscan.s3.amazonaws.com/Apple_pie_resized.jpg')
   .on('error', function(err,response) {
     console.error(err)
 	console.log(response.statusCode)
